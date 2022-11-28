@@ -4,9 +4,12 @@ import {useEffect, useState} from "react";
 
 const useFetch = (fetchUrl) => {
     const [data, setData] = useState();
+    // const [loading, setLoading] = useState(false);
+    // const [error, setError] = useState(null);
+
 
     useEffect(() => {
-        fetch("data.json", {
+        fetch(fetchUrl, {
             headers: {
                 "Content-Type": "application/json",
                 Accept: "application/json"
@@ -16,9 +19,11 @@ const useFetch = (fetchUrl) => {
                 return response.json();
             })
             .then((myJson) => {
+                // setLoading(true);
                 setData(myJson);
             })
             .catch((error) => {
+                // setError(error);
                 console.log(error);
             });
     }, [fetchUrl]);
